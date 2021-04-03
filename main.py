@@ -3,11 +3,12 @@ import binascii
 
 print('起動中...')
 clf = nfc.ContactlessFrontend('usb')
-print('カードをタッチしてください:')
+print('カードをタッチしてください↓\n')
 try:
     tag = clf.connect(rdwr={'on-connect': lambda tag: False})
 finally:
     clf.close()
-idm = binascii.hexlify(tag.idm)
-print(idm)
-print('カードを離して下さい')
+ID = binascii.hexlify(tag.identifier).decode().upper()
+print(f'あなたのIDは{ID}です。')
+
+
